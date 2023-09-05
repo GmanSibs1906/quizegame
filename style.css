@@ -30,3 +30,55 @@ body {
     right: 15%;
     top: 70%;
 }
+
+.instruction-person {
+    margin-top: 4%;
+}
+
+.instruction-text {
+    text-align: left;
+    right: 35%;
+}
+
+.question-bubble {
+    position: absolute;
+    width: 35%;
+    right: 44%;
+    margin-top: -5%;
+}
+
+.question-text {
+    position: absolute;
+    right: 50%;
+    font-size: 20px;
+    width: 24%;
+    top: 10%;
+    text-align: center;
+}
+
+.question-person {
+    margin-top: 5%;
+}
+
+.answer-box {
+    position: absolute;
+    right: 5%;
+    top: 35%;
+    height: 25%;
+    width: 40%;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.answer {
+    height: 25%;
+    width: 100%;
+    border: rgb(0, 238, 255);
+    border-style: solid;
+    border-width: thin;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    padding: 0 10px;
+}
