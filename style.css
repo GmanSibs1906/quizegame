@@ -71,8 +71,15 @@ body {
     padding-right: 10px;
 }
 
-.answer {
+label {
+    display: flex;
     height: 25%;
+    width: 100%;
+    align-items: center;
+}
+
+.answer {
+    height: 100%;
     width: 100%;
     border: rgb(0, 238, 255);
     border-style: solid;
@@ -81,4 +88,13 @@ body {
     align-items: center;
     margin-top: 5px;
     padding: 0 10px;
+}
+
+.answer-btn {
+    position: absolute;
+    right: 20%;
+    font-size: 22px;
+    width: 10%;
+    top: 75%;
+    text-align: center;
 }

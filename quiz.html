@@ -8,17 +8,23 @@
 </head>
 <body>
     <img src="./images/bubble.png" alt="" class="question-bubble">
-    <p class="question-text">1. What is JavaScript?</p>
-    <img src="./images/question.webp" alt="" class="intro-person question-person">
-    <img src="images/next.webp" alt="" class="intro-next">
-
-    <div class="answer-box">
-        <div class="answer">a. JavaScript is a scripting language used to make the website interactive</div>
-        <div class="answer">b. JavaScript is an assembly language used to make the website interactive</div>
-        <div class="answer">c. JavaScript is a compiled language used to make the website interactive</div>
-        <div class="answer">d. None of the mentioned</div>
-    </div>
+    <p class="question-text" id="question-text"></p>
+    <img src="./images/question.webp" alt="" class="intro-person question-person" id="question-person-img">
+    <button id="next-button" onclick="nextQuestion()">
+        <img src="images/submit.png" alt="" class="answer-btn">
+    </button>
     
+
+    <div class="answer-box" id="answer-box">
+        <label ><input type="radio" name="answer" value="a"> <span id="answer-a" class="answer"></span></label><br>
+        <label><input type="radio" name="answer" value="b"> <span id="answer-b" class="answer"></span></label><br>
+        <label><input type="radio" name="answer" value="c"> <span id="answer-c" class="answer"></span></label><br>
+        <label><input type="radio" name="answer" value="d"> <span id="answer-d" class="answer"></span></label><br>
+    </div>
+
+    
+
     <script src="index.js"></script>
 </body>
+
 </html>
