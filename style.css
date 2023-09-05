@@ -1,0 +1,32 @@
+body {
+    position: relative;
+}
+
+.into-bubble {
+    position: absolute;
+    width: 40%;
+    right: 30%;
+    top: -30px;
+}
+
+.intro-text {
+    position: absolute;
+    right: 37%;
+    font-size: 22px;
+    width: 26%;
+    top: 13%;
+    text-align: center;
+}
+
+.intro-person {
+    width: 40vw;
+    object-fit: contains;
+    margin-top: 15%;
+}
+
+.intro-next {
+    position: absolute;
+    width: 10%;
+    right: 15%;
+    top: 70%;
+}
