@@ -98,3 +98,15 @@ label {
     top: 75%;
     text-align: center;
 }
+
+.yes {
+    display: none;
+}
+
+.no {
+    display: none;
+}
+
+.wrong {
+    display: none;
+}

@@ -10,10 +10,14 @@
     <img src="./images/bubble.png" alt="" class="question-bubble">
     <p class="question-text" id="question-text"></p>
     <img src="./images/question.webp" alt="" class="intro-person question-person" id="question-person-img">
-    <button id="next-button" onclick="nextQuestion()">
+    <img src="./images/yes.webp" alt="" class="intro-person question-person yes" id="question-person-img">
+    <img src="./images/no.webp" alt="" class="intro-person question-person no" id="question-person-img">
+    <img src="./images/wrong.png" alt="" class="intro-person question-person wrong" id="question-person-img">
+    <button id="next-button" onclick="checkAnswer()">
         <img src="images/submit.png" alt="" class="answer-btn">
     </button>
     
+    <button id="next-button2" onclick="nextQuestion()">Next</button>
 
     <div class="answer-box" id="answer-box">
         <label ><input type="radio" name="answer" value="a"> <span id="answer-a" class="answer"></span></label><br>
