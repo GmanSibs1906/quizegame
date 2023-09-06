@@ -297,6 +297,8 @@ const checkAnswer = () => {
     const modal = document.getElementById("myModal");
     const modalMessage = document.getElementById("modalMessage");
     const modalButton = document.getElementById("modalButton");
+    const passImage = document.getElementById("passImage")
+    const failImage = document.getElementById("failImage")
   
     modalMessage.textContent = message;
     modalButton.textContent = buttonText;
@@ -331,12 +333,16 @@ const checkAnswer = () => {
         displayQuestion();
       } else {
         if (correctAnswersCount < 5) {
-          showModal("Please Retake Quiz", "Retake", () => {
+            passImage.style.display = "none";
+          showModal(`You got ${correctAnswersCount * 10}%, Please Retake Quiz`, "Retake", () => {
+            
             // Reload the page to retake the quiz
             location.reload();
           });
         } else {
+            failImage.style.display = "none";
           showModal(`You passed and got ${correctAnswersCount * 10}%`, "Close", () => {
+            
             // Redirect to index.html
             window.location.href = "index.html";
           });
