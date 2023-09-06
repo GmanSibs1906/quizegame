@@ -1,3 +1,5 @@
+let correctAnswersCount = 0;
+
 class Question {
     constructor(question, answers) {
       this.question = question;
@@ -23,6 +25,8 @@ class Question {
         }
         });
         };
+
+
   
     checkAnswer = () => {
       const selectedAnswer = document.querySelector('input[name="answer"]:checked');
@@ -41,6 +45,10 @@ class Question {
         yesImage.style.paddingTop = "10%";
         questionText.style.top = "8%";
         questionText.textContent = `Well done...you got it right!!!`;
+
+        // Increment the correct answers count
+        correctAnswersCount++;
+        
       } else {
         questionText.textContent = `Wrong Answer. Correct answer is ${correctAnswer.text}`;
         questionImage.style.display = "none";
@@ -87,7 +95,133 @@ class Question {
       },
       { text: "d) None of the mentioned", correct: false },
     ]),
+    // New questions start here
+    new Question("4. Which of the following is not JavaScript data types?", [
+      {
+        text: "a) Null type",
+        correct: false,
+      },
+      {
+        text: "b) Undefined type",
+        correct: false,
+      },
+      {
+        text: "c) Number type",
+        correct: false,
+      },
+      { text: "d) All of the mentioned", correct: true },
+    ]),
+    new Question("5. Arrays in JavaScript are defined by which of the following statements?", [
+      {
+        text: "a) It is an ordered list of values",
+        correct: true,
+      },
+      {
+        text: "b) It is an ordered list of objects",
+        correct: false,
+      },
+      {
+        text: "c) It is an ordered list of string",
+        correct: false,
+      },
+      {
+        text: "d) It is an ordered list of functions",
+        correct: false,
+      },
+    ]),
+    new Question("6. Which of the following object is the main entry point to all client-side JavaScript features and APIs?", [
+      {
+        text: "a) Position",
+        correct: false,
+      },
+      {
+        text: "b) Window",
+        correct: true,
+      },
+      {
+        text: "c) Standard",
+        correct: false,
+      },
+      {
+        text: "d) Location",
+        correct: false,
+      },
+    ]),
+    new Question("7. Which of the following can be used to call a JavaScript Code Snippet?", [
+      {
+        text: "a) Function/Method",
+        correct: true,
+      },
+      {
+        text: "b) Preprocessor",
+        correct: false,
+      },
+      {
+        text: "c) Triggering Event",
+        correct: false,
+      },
+      {
+        text: "d) RMI",
+        correct: false,
+      },
+    ]),
+    new Question("8. Which of the following methods/operation does JavaScript use instead of == and !=?", [
+      {
+        text: "a) JavaScript uses equalto()",
+        correct: false,
+      },
+      {
+        text: "b) JavaScript uses equals() and notequals() instead",
+        correct: false,
+      },
+      {
+        text: "c) JavaScript uses bitwise checking",
+        correct: false,
+      },
+      {
+        text: "d) JavaScript uses === and !== instead",
+        correct: true,
+      },
+    ]),
+    new Question("9. Which of the following is the property that is triggered in response to JS errors?", [
+      {
+        text: "a) onclick",
+        correct: false,
+      },
+      {
+        text: "b) onerror",
+        correct: true,
+      },
+      {
+        text: "c) onmessage",
+        correct: false,
+      },
+      {
+        text: "d) onexception",
+        correct: false,
+      },
+    ]),
+    new Question("10. Which of the following is the property that is triggered in response to JS errors?", [
+        {
+          text: "a) onclick",
+          correct: false,
+        },
+        {
+          text: "b) onerror",
+          correct: true,
+        },
+        {
+          text: "c) onmessage",
+          correct: false,
+        },
+        {
+          text: "d) onexception",
+          correct: false,
+        },
+      ]),
+    
   ];
+  
   
   let currentQuestionIndex = 0;
   
@@ -100,19 +234,76 @@ class Question {
   const yesImage = document.querySelector(".yes");
   const noImage = document.querySelector(".no");
   const questionImage = document.querySelector(".question");
+  const checkbtn = document.querySelector("checkbtn");
+  const counter = document.getElementById("counter")
+  const modalClose = document.getElementById("modalClose");
+modalClose.addEventListener("click", () => {
+  closeModal();
+});
+
   
   const displayQuestion = () => {
     const currentQuestion = questions[currentQuestionIndex];
     currentQuestion.display();
   };
+
+const checkAnswer = () => {
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    if (!selectedAnswer) {
+      questionText.textContent = "Please select an answer!!!!";
+      return;
+    }
   
-  const checkAnswer = () => {
-    const currentQuestion = questions[currentQuestionIndex];
-    currentQuestion.checkAnswer();
-    checkbtn.style.display = "none";
+    const correctAnswer = questions[currentQuestionIndex].answers.find((answer) => answer.correct);
+  
+    if (selectedAnswer.value == correctAnswer.text.split(")", 1)) {
+      questionImage.style.display = "none";
+      yesImage.style.display = "block";
+      yesImage.style.paddingTop = "10%";
+      questionText.style.top = "8%";
+      questionText.textContent = `Well done...you got it right!!!`;
+      correctAnswersCount ++
+      console.log(correctAnswersCount)
+    } else {
+      questionText.textContent = `Wrong Answer. Correct answer is ${correctAnswer.text}`;
+      questionImage.style.display = "none";
+      noImage.style.display = "block";
+      questionText.style.top = "5%";
+    }
+
+    const displayCounter= () => {
+        counter.textContent = correctAnswersCount;
+      }
+    
+      displayCounter()
+  
+    // Show the "Next" button after checking the answer
+    const nextButton = document.getElementById("next-button2");
+    nextButton.style.display = "block";
+  
+    // Hide the "Check" button after checking the answer
+    const checkButton = document.getElementById("next-button");
+    checkButton.style.display = "none";
   };
 
+  
 
+
+
+
+
+  const showModal = (message) => {
+    const modal = document.getElementById("myModal");
+    const modalMessage = document.getElementById("modalMessage");
+    modalMessage.textContent = message;
+    modal.style.display = "block";
+  };
+  
+  const closeModal = () => {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "none";
+  };
+  
   const nextQuestion = () => {
     // Hide the result images
     yesImage.style.display = "none";
@@ -120,20 +311,31 @@ class Question {
   
     // Display only the question-person image
     questionImage.style.display = "block";
+    
+    const nextButton = document.getElementById("next-button2");
+    nextButton.style.display = "none";
   
     currentQuestionIndex++;
   
     if (currentQuestionIndex < questions.length) {
       displayQuestion();
     } else {
-      alert("Quiz completed!");
+      if (correctAnswersCount < 5) {
+        showModal("Please Retake Quiz");
+      } else {
+        showModal(`You passed and got ${correctAnswersCount * 10}%`);
+      }
     }
   };
   
-  
-  
+
+
   
 
   
+  
+
+
+
   displayQuestion();
   
