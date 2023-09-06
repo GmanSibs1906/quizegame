@@ -8,7 +8,7 @@ body, h1, p {
     position: relative;
     width: 100%;
     height: 100vh;
-    background-image: url("./images/background.jpg");
+    background-image: url("./images/bg1.png");
     background-size: cover;
     background-position: center;
     overflow: hidden; /* Hide overflowing content */
@@ -94,7 +94,7 @@ body, h1, p {
     padding-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    background: #ffffffb2;
+    background: #c400eb56;
     border-radius: 20px;
 }
 
@@ -108,7 +108,7 @@ label {
 .answer {
     height: 70%;
     width: 100%;
-    background-color: #fefefeb2;
+    background-color: #c300ff8a;
     display: flex;
     align-items: center;
     margin-top: 5px;
@@ -160,13 +160,14 @@ label {
   
 
   .modal-content {
-    background-color: #fefefe;
+    background-color: #fefefea6;
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 50%;
     text-align: center;
     position: relative;
+    border-radius: 10px;
   }
   
   .modalImage {
@@ -186,16 +187,92 @@ label {
     padding: 10px;
     cursor: pointer;
   }
+  
 
 
 /* Media query for tablets (portrait orientation) */
-@media (max-width: 768px) {
+@media (max-width: 815px) {
     body {
-        /* Your styles for tablets go here */
+        font-size: 16px;
     }
     
-    .close {
-        /* Your styles for the close button on tablets go here */
+    .intro-person {
+        width: 50vw;
+        object-fit: contains;
+        margin-top: 82%;
+      }
+
+      .into-bubble {
+        position: absolute;
+        width: 55%;
+        right: 46%;
+        top: 35%;
+      }
+
+      .intro-text {
+        position: absolute;
+        right: 54%;
+        font-size: 22px;
+        width: 40%;
+        top: 45%;
+        text-align: center;
+      }
+
+      .intro-next {
+        position: absolute;
+        width: 15%;
+        right: 20%;
+        top: 80%;
+      }
+
+      .question {
+        margin-top: 29%;
+      }
+
+      .question-bubble {
+        position: absolute;
+        width: 48%;
+        height: 30%;
+        right: 50%;
+        margin-top: -5%;
+      }
+
+      .question-text {
+        position: absolute;
+        right: 55%;
+        font-size: 20px;
+        width: 39%;
+        margin-top: -5%;
+        text-align: center;
+      }
+
+      .answer-box {
+        position: absolute;
+        right: 8%;
+        top: 60%;
+        height: 21%;
+        width: 80%;
+      }
+
+      .answer-btn {
+        right: 65%;
+        width: 15%;
+        top: 85%;
+      }
+    
+    .next-btn {
+        right: 19%;
+        font-size: 22px;
+        height: 7%;
+        top: 85%;
+    }
+
+    .no  {
+        margin-top: 29%;
+    }
+
+    .yes {
+        margin-top: 29%;
     }
 }
 
@@ -282,4 +359,13 @@ label {
     height: 8%;
     top: 88.5%;
 }
+
+.question-bubble {
+    position: absolute;
+    width: 58%;
+    height: 30%;
+    right: 0%;
+    margin-top: -20%;
+  }
+
 }
