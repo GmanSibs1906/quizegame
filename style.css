@@ -3,7 +3,7 @@ body, h1, p {
     padding: 0;
 }
 
-/* Set the container to cover the full screen */
+
 .container {
     position: relative;
     width: 100%;
@@ -11,10 +11,9 @@ body, h1, p {
     background-image: url("./images/bg1.png");
     background-size: cover;
     background-position: center;
-    overflow: hidden; /* Hide overflowing content */
+    overflow: hidden; 
 }
 
-/* Create a transparent glass effect using a pseudo-element */
 .container::before {
     content: "";
     position: absolute;
@@ -25,22 +24,22 @@ body, h1, p {
     pointer-events: none;
 }
 
-/* Style your other elements as needed */
 .counter{
-  color: white;
-  font-size: 45;
-  position: absolute;
-  right: 5%;
-  top: 5%;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: black;
-  
-}
+    color: white;
+    font-size: 45;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    
+  }
+
 .into-bubble {
     position: absolute;
     width: 40%;
@@ -201,10 +200,8 @@ label {
     padding: 10px;
     cursor: pointer;
   }
-  
 
-
-/* Media query for tablets (portrait orientation) */
+  /* Media query for tablets (portrait orientation) */
 @media (max-width: 815px) {
     body {
         font-size: 16px;
@@ -253,10 +250,10 @@ label {
 
       .question-text {
         position: absolute;
-        right: 55%;
+        right: 57%;
         font-size: 20px;
-        width: 39%;
-        margin-top: -5%;
+        width: 33%;
+        margin-top: 0%;
         text-align: center;
       }
 
@@ -278,7 +275,7 @@ label {
         right: 19%;
         font-size: 22px;
         height: 7%;
-        top: 85%;
+        top: 84.5%;
     }
 
     .no  {
@@ -290,12 +287,20 @@ label {
     }
 }
 
+
+
+
 /* Media query for cellphones (portrait orientation) */
 @media (max-width: 480px) {
 
     body {
         font-size: 14px;
     }
+
+    .counter{
+        font-size: 25;
+        left: 5%;
+      }
 
 
   .intro-person {
