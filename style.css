@@ -92,10 +92,19 @@ label {
 
 .answer-btn {
     position: absolute;
-    right: 20%;
+    right: 30%;
     font-size: 22px;
     width: 10%;
     top: 75%;
+    text-align: center;
+}
+
+.next-btn {
+    position: absolute;
+    right: 10%;
+    font-size: 22px;
+    height: 13%;
+    top: 74%;
     text-align: center;
 }
 

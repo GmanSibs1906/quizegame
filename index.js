@@ -1,8 +1,57 @@
-// Define your questions and answers
-const questions = [
-  {
-    question: "1. What is JavaScript?",
-    answers: [
+class Question {
+    constructor(question, answers) {
+      this.question = question;
+      this.answers = answers;
+    }
+  
+    display = () => {
+      questionText.textContent = this.question;
+      this.answers.forEach((answer, index) => {
+        const answerElement1 = document.getElementById(`answer-a`);
+        const answerElement2 = document.getElementById(`answer-b`);
+        const answerElement3 = document.getElementById(`answer-c`);
+        const answerElement4 = document.getElementById(`answer-d`);
+        if (index == 0) {
+            answerElement1.textContent = answer.text;
+        } else if (index == 1 ){
+            answerElement2.textContent = answer.text;
+        } else if (index == 2 ){
+            answerElement3.textContent = answer.text;
+        }
+        else {
+            answerElement4.textContent = answer.text;
+        }
+        });
+        };
+  
+    checkAnswer = () => {
+      const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+      console.log(`selected answer is ${selectedAnswer.value}`);
+      if (!selectedAnswer) {
+        questionText.textContent = "Please select an answer!!!!";
+        return;
+      }
+  
+      const correctAnswer = this.answers.find((answer) => answer.correct);
+      console.log(`correct answer is ${correctAnswer.text.split(")", 1)}`);
+  
+      if (selectedAnswer.value == correctAnswer.text.split(")", 1)) {
+        questionImage.style.display = "none";
+        yesImage.style.display = "block";
+        yesImage.style.paddingTop = "10%";
+        questionText.style.top = "8%";
+        questionText.textContent = `Well done...you got it right!!!`;
+      } else {
+        questionText.textContent = `Wrong Answer. Correct answer is ${correctAnswer.text}`;
+        questionImage.style.display = "none";
+        noImage.style.display = "block";
+        questionText.style.top = "5%";
+      }
+    };
+  }
+  
+  const questions = [
+    new Question("1. What is JavaScript?", [
       {
         text: "a) JavaScript is a scripting language used to make the website interactive",
         correct: true,
@@ -16,21 +65,14 @@ const questions = [
         correct: false,
       },
       { text: "d) None of the mentioned", correct: false },
-    ],
-  },
-  {
-    question: "2. Which of the following is correct about JavaScript?",
-    answers: [
+    ]),
+    new Question("2. Which of the following is correct about JavaScript?", [
       { text: "a) JavaScript is an Object-Based language", correct: true },
       { text: "b) JavaScript is Assembly-language", correct: false },
       { text: "c) JavaScript is an Object-Oriented language", correct: false },
       { text: "d) JavaScript is a High-level language", correct: false },
-    ],
-  },
-  {
-    question:
-      "3. Among the given statements, which statement defines closures in JavaScript?",
-    answers: [
+    ]),
+    new Question("3. Among the given statements, which statement defines closures in JavaScript?", [
       {
         text: "a) JavaScript is a function that is enclosed with references to its inner function scope",
         correct: false,
@@ -44,78 +86,54 @@ const questions = [
         correct: false,
       },
       { text: "d) None of the mentioned", correct: false },
-    ],
-  },
-];
+    ]),
+  ];
+  
+  let currentQuestionIndex = 0;
+  
+  const questionText = document.getElementById("question-text");
+  const answerA = document.getElementById("answer-a");
+  const answerB = document.getElementById("answer-b");
+  const answerC = document.getElementById("answer-c");
+  const answerD = document.getElementById("answer-d");
+  const nextButton = document.getElementById("next-button");
+  const yesImage = document.querySelector(".yes");
+  const noImage = document.querySelector(".no");
+  const questionImage = document.querySelector(".question");
+  
+  const displayQuestion = () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    currentQuestion.display();
+  };
+  
+  const checkAnswer = () => {
+    const currentQuestion = questions[currentQuestionIndex];
+    currentQuestion.checkAnswer();
+    checkbtn.style.display = "none";
+  };
 
-let currentQuestionIndex = 0;
 
-// Get DOM elements
-const questionText = document.getElementById("question-text");
-const answerBox = document.getElementById("answer-box");
-const answerA = document.getElementById("answer-a");
-const answerB = document.getElementById("answer-b");
-const answerC = document.getElementById("answer-c");
-const answerD = document.getElementById("answer-d");
-const nextButton = document.getElementById("next-button");
-const yesImage = document.querySelector(".yes");
-const noImage = document.querySelector(".no");
-const wrongImage = document.querySelector(".wrong");
-const questionImage = document.querySelector(".question-person");
+  const nextQuestion = () => {
+    // Hide the result images
+    yesImage.style.display = "none";
+    noImage.style.display = "none";
+  
+    // Display only the question-person image
+    questionImage.style.display = "block";
+  
+    currentQuestionIndex++;
+  
+    if (currentQuestionIndex < questions.length) {
+      displayQuestion();
+    } else {
+      alert("Quiz completed!");
+    }
+  };
+  
+  
+  
+  
 
-// Function to display the current question
-function displayQuestion() {
-  const currentQuestion = questions[currentQuestionIndex];
-  questionText.textContent = currentQuestion.question;
-  answerA.textContent = currentQuestion.answers[0].text;
-  answerB.textContent = currentQuestion.answers[1].text;
-  answerC.textContent = currentQuestion.answers[2].text;
-  answerD.textContent = currentQuestion.answers[3].text;
-}
-
-// Function to check the selected answer
-function checkAnswer() {
-  const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-  if (!selectedAnswer) {
-    questionText.textContent = "Please select an answer!!!!";
-    return;
-  }
-
-  const currentQuestion = questions[currentQuestionIndex];
-  const correctAnswer = currentQuestion.answers.find(
-    (answer) => answer.correct
-  );
-
-  if (selectedAnswer.value === correctAnswer.correct.toString()) {
-    questionImage.style.display = "none";
-    yesImage.style.display = "block";
-  } else {
-    questionText.textContent = `Wrong Answer. Correct answer is ${correctAnswer.text}`;
-    // Change the image source to a "wrong" image
-    questionImage.style.display = "none";
-    noImage.style.display = "block";
-  }
-}
-
-function nextQuestion() {
-  // Check the selected answer
-
-  // Reset answer images
-  yesImage.style.display = "none";
-  noImage.style.display = "none";
-  questionImage.style.display = "block";
-
-  // Move to the next question
-  currentQuestionIndex++;
-
-  if (currentQuestionIndex < questions.length) {
-    displayQuestion();
-  } else {
-    alert("Quiz completed!"); // You can add your logic for what to do when the quiz is completed.
-    // Optionally, you can reset the quiz by setting currentQuestionIndex back to 0.
-    // currentQuestionIndex = 0;
-  }
-}
-
-// Initial display
-displayQuestion();
+  
+  displayQuestion();
+  
