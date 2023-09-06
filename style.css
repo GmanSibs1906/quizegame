@@ -26,7 +26,21 @@ body, h1, p {
 }
 
 /* Style your other elements as needed */
-
+.counter{
+  color: white;
+  font-size: 45;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  
+}
 .into-bubble {
     position: absolute;
     width: 40%;
