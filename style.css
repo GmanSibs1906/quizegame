@@ -1,5 +1,6 @@
 body {
     position: relative;
+    background: #50a30d;
 }
 
 .into-bubble {
@@ -151,3 +152,4 @@ label {
     padding: 10px;
     cursor: pointer;
   }
+

@@ -241,6 +241,7 @@ modalClose.addEventListener("click", () => {
   closeModal();
 });
 
+
   
   const displayQuestion = () => {
     const currentQuestion = questions[currentQuestionIndex];
@@ -292,10 +293,19 @@ const checkAnswer = () => {
 
 
 
-  const showModal = (message) => {
+  const showModal = (message, buttonText, buttonCallback) => {
     const modal = document.getElementById("myModal");
     const modalMessage = document.getElementById("modalMessage");
+    const modalButton = document.getElementById("modalButton");
+  
     modalMessage.textContent = message;
+    modalButton.textContent = buttonText;
+  
+    modalButton.onclick = () => {
+      modal.style.display = "none";
+      buttonCallback();
+    };
+  
     modal.style.display = "block";
   };
   
@@ -318,14 +328,20 @@ const checkAnswer = () => {
     currentQuestionIndex++;
   
     if (currentQuestionIndex < questions.length) {
-      displayQuestion();
-    } else {
-      if (correctAnswersCount < 5) {
-        showModal("Please Retake Quiz");
+        displayQuestion();
       } else {
-        showModal(`You passed and got ${correctAnswersCount * 10}%`);
+        if (correctAnswersCount < 5) {
+          showModal("Please Retake Quiz", "Retake", () => {
+            // Reload the page to retake the quiz
+            location.reload();
+          });
+        } else {
+          showModal(`You passed and got ${correctAnswersCount * 10}%`, "Close", () => {
+            // Redirect to index.html
+            window.location.href = "index.html";
+          });
+        }
       }
-    }
   };
   
 
