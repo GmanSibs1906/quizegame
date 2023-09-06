@@ -187,3 +187,40 @@ label {
     cursor: pointer;
   }
 
+
+/* Media query for tablets (portrait orientation) */
+@media (max-width: 768px) {
+    body {
+        /* Your styles for tablets go here */
+    }
+    
+    .close {
+        /* Your styles for the close button on tablets go here */
+    }
+}
+
+/* Media query for cellphones (portrait orientation) */
+@media (max-width: 480px) {
+  .intro-person {
+    width: 80vw;
+    object-fit: contains;
+    margin-top: 105%;
+  }
+
+  .into-bubble {
+    position: absolute;
+    width: 110%;
+    right: 0%;
+    top: 0%;
+    height: 60%;
+  }
+
+  .intro-text {
+    position: absolute;
+    right: 15%;
+    font-size: 22px;
+    width: 80%;
+    top: 20%;
+    text-align: center;
+  }
+}
