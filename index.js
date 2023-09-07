@@ -1,5 +1,26 @@
+////////// define counter //////////
 let correctAnswersCount = 0;
 
+
+////////// DOM elements ////////
+  const questionText = document.getElementById("question-text");
+  const answerA = document.getElementById("answer-a");
+  const answerB = document.getElementById("answer-b");
+  const answerC = document.getElementById("answer-c");
+  const answerD = document.getElementById("answer-d");
+  const nextButton = document.getElementById("checkbtn");
+  const yesImage = document.querySelector(".yes");
+  const noImage = document.querySelector(".no");
+  const questionImage = document.querySelector(".question");
+  const checkbtn = document.querySelector("checkbtn");
+  const counter = document.getElementById("counter")
+  const modalClose = document.getElementById("modalClose");
+  modalClose.addEventListener("click", () => {
+    closeModal();
+  });
+
+
+////////// handle questions and answers //////////
 class Question {
     constructor(question, answers) {
       this.question = question;
@@ -7,8 +28,11 @@ class Question {
     }
   
     display = () => {
+      // display question
       questionText.textContent = this.question;
+      // display answers
       this.answers.forEach((answer, index) => {
+        // DOM elements for answers
         const answerElement1 = document.getElementById(`answer-a`);
         const answerElement2 = document.getElementById(`answer-b`);
         const answerElement3 = document.getElementById(`answer-c`);
@@ -25,75 +49,46 @@ class Question {
         }
         });
         };
-
-
-  
-    checkAnswer = () => {
-      const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-      console.log(`selected answer is ${selectedAnswer.value}`);
-      if (!selectedAnswer) {
-        questionText.textContent = "Please select an answer!!!!";
-        return;
-      }
-  
-      const correctAnswer = this.answers.find((answer) => answer.correct);
-      console.log(`correct answer is ${correctAnswer.text.split(")", 1)}`);
-  
-      if (selectedAnswer.value == correctAnswer.text.split(")", 1)) {
-        questionImage.style.display = "none";
-        yesImage.style.display = "block";
-        yesImage.style.paddingTop = "10%";
-        questionText.style.top = "8%";
-        questionText.textContent = `Well done...you got it right!!!`;
-
-        // Increment the correct answers count
-        correctAnswersCount++;
-        
-      } else {
-        questionText.textContent = `Wrong Answer. Correct answer is ${correctAnswer.text}`;
-        questionImage.style.display = "none";
-        noImage.style.display = "block";
-        questionText.style.top = "5%";
-      }
-    };
   }
   
+
+  ////////// Array for Questions and answers //////////
   const questions = [
-    new Question("1. What is JavaScript?", [
+    new Question("1. Which of the below returns false?", [
       {
-        text: "a) JavaScript is a scripting language used to make the website interactive",
+        text: "a) Boolean(0)",
         correct: true,
       },
       {
-        text: "b) JavaScript is an assembly language used to make the website interactive",
+        text: "b) Boolean(1)",
         correct: false,
       },
       {
-        text: "c) JavaScript is a compiled language used to make the website interactive",
+        text: "c) Boolean('false')",
         correct: false,
       },
-      { text: "d) None of the mentioned", correct: false },
+      { text: "d) Boolean([])", correct: false },
     ]),
-    new Question("2. Which of the following is correct about JavaScript?", [
-      { text: "a) JavaScript is an Object-Based language", correct: true },
-      { text: "b) JavaScript is Assembly-language", correct: false },
-      { text: "c) JavaScript is an Object-Oriented language", correct: false },
-      { text: "d) JavaScript is a High-level language", correct: false },
+    new Question("2. What do we call values passed into a function?", [
+      { text: "a) Parameters;", correct: true },
+      { text: "b) Arguments;", correct: false },
+      { text: "c) Variables;", correct: false },
+      { text: "d) Functions", correct: false },
     ]),
-    new Question("3. Among the given statements, which statement defines closures in JavaScript?", [
+    new Question("3. Which is NOT a basic data type in JavaScript below?", [
       {
-        text: "a) JavaScript is a function that is enclosed with references to its inner function scope",
+        text: "a) Object",
         correct: false,
       },
       {
-        text: "b) JavaScript is a function that is enclosed with references to its lexical environment",
+        text: "b) Array",
         correct: true,
       },
       {
-        text: "c) JavaScript is a function that is enclosed with the object to its inner function scope",
+        text: "c) Boolean",
         correct: false,
       },
-      { text: "d) None of the mentioned", correct: false },
+      { text: "d) Null", correct: false },
     ]),
     // New questions start here
     new Question("4. Which of the following is not JavaScript data types?", [
@@ -111,111 +106,111 @@ class Question {
       },
       { text: "d) All of the mentioned", correct: true },
     ]),
-    new Question("5. Arrays in JavaScript are defined by which of the following statements?", [
+    new Question("5. What is an Array?", [
       {
-        text: "a) It is an ordered list of values",
+        text: "a)  A sequence of values",
         correct: true,
       },
       {
-        text: "b) It is an ordered list of objects",
+        text: "b) A single value",
         correct: false,
       },
       {
-        text: "c) It is an ordered list of string",
+        text: "c) A function",
         correct: false,
       },
       {
-        text: "d) It is an ordered list of functions",
+        text: "d) An object",
         correct: false,
       },
     ]),
-    new Question("6. Which of the following object is the main entry point to all client-side JavaScript features and APIs?", [
+    new Question("6. What does the splice() method do?", [
       {
-        text: "a) Position",
+        text: "a) Reverses the order of elements in an array",
         correct: false,
       },
       {
-        text: "b) Window",
+        text: "b) Adds or removes elements from an array",
         correct: true,
       },
       {
-        text: "c) Standard",
+        text: "c) Joins two or more arrays",
         correct: false,
       },
       {
-        text: "d) Location",
+        text: "d) Splits a string into an array",
         correct: false,
       },
     ]),
-    new Question("7. Which of the following can be used to call a JavaScript Code Snippet?", [
+    new Question("7. What is the purpose of the break statement in a loop?", [
       {
-        text: "a) Function/Method",
+        text: "a) To immediately exit the loop",
         correct: true,
       },
       {
-        text: "b) Preprocessor",
+        text: "b) To skip the current iteration of the loop",
         correct: false,
       },
       {
-        text: "c) Triggering Event",
+        text: "c) To pause the loop for a specified duration",
         correct: false,
       },
       {
-        text: "d) RMI",
+        text: "d) To continue the loop from the beginning",
         correct: false,
       },
     ]),
-    new Question("8. Which of the following methods/operation does JavaScript use instead of == and !=?", [
+    new Question("8. What does the map() method do?", [
       {
-        text: "a) JavaScript uses equalto()",
+        text: "a) Adds elements to an array",
         correct: false,
       },
       {
-        text: "b) JavaScript uses equals() and notequals() instead",
+        text: "b) Removes elements from an array",
         correct: false,
       },
       {
-        text: "c) JavaScript uses bitwise checking",
+        text: "c) Filters elements from an array based on a condition",
         correct: false,
       },
       {
-        text: "d) JavaScript uses === and !== instead",
+        text: "d) Creates new array by calling a function for every array element",
         correct: true,
       },
     ]),
-    new Question("9. Which of the following is the property that is triggered in response to JS errors?", [
+    new Question("9. What does the reduce() method do? ", [
       {
-        text: "a) onclick",
+        text: "a) Reduces an array to a single value",
         correct: false,
       },
       {
-        text: "b) onerror",
+        text: "b) Filters elements from an array based on a condition",
         correct: true,
       },
       {
-        text: "c) onmessage",
+        text: "c) Reverses the order of elements in an array",
         correct: false,
       },
       {
-        text: "d) onexception",
+        text: "d) None of the above",
         correct: false,
       },
     ]),
-    new Question("10. Which of the following is the property that is triggered in response to JS errors?", [
+    new Question("10. What is a nested array?", [
         {
-          text: "a) onclick",
+          text: "a) An array that can only store numbers",
           correct: false,
         },
         {
-          text: "b) onerror",
+          text: "b)  An array that contains another array as an element",
           correct: true,
         },
         {
-          text: "c) onmessage",
+          text: "c)  An array that can only store strings",
           correct: false,
         },
         {
-          text: "d) onexception",
+          text: "d) An array with a single element",
           correct: false,
         },
       ]),
@@ -223,48 +218,37 @@ class Question {
   ];
   
   
+  
+  ////////// display current question ///////////
   let currentQuestionIndex = 0;
-  
-  const questionText = document.getElementById("question-text");
-  const answerA = document.getElementById("answer-a");
-  const answerB = document.getElementById("answer-b");
-  const answerC = document.getElementById("answer-c");
-  const answerD = document.getElementById("answer-d");
-  const nextButton = document.getElementById("next-button");
-  const yesImage = document.querySelector(".yes");
-  const noImage = document.querySelector(".no");
-  const questionImage = document.querySelector(".question");
-  const checkbtn = document.querySelector("checkbtn");
-  const counter = document.getElementById("counter")
-  const modalClose = document.getElementById("modalClose");
-modalClose.addEventListener("click", () => {
-  closeModal();
-});
-
-
-  
   const displayQuestion = () => {
     const currentQuestion = questions[currentQuestionIndex];
     currentQuestion.display();
   };
 
+  ////////// Check answers //////////
 const checkAnswer = () => {
+    // check for selected answer
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
     if (!selectedAnswer) {
       questionText.textContent = "Please select an answer!!!!";
       return;
     }
   
+    // correct answer
     const correctAnswer = questions[currentQuestionIndex].answers.find((answer) => answer.correct);
   
+    // if correct answer display corresponding image and text
     if (selectedAnswer.value == correctAnswer.text.split(")", 1)) {
       questionImage.style.display = "none";
       yesImage.style.display = "block";
       yesImage.style.paddingTop = "10%";
       questionText.style.top = "8%";
       questionText.textContent = `Well done...you got it right!!!`;
+      // increment count
       correctAnswersCount ++
       console.log(correctAnswersCount)
+      // if wrong answer display corresponding image and correct answer
     } else {
       questionText.textContent = `Wrong Answer. Correct answer is ${correctAnswer.text}`;
       questionImage.style.display = "none";
@@ -272,37 +256,38 @@ const checkAnswer = () => {
       questionText.style.top = "5%";
     }
 
+    // display counter / score
     const displayCounter= () => {
         counter.textContent = correctAnswersCount;
       }
     
       displayCounter()
   
-    // Show the "Next" button after checking the answer
+    // show the "Next" button after checking the answer
     const nextButton = document.getElementById("next-button2");
     nextButton.style.display = "block";
   
-    // Hide the "Check" button after checking the answer
-    const checkButton = document.getElementById("next-button");
+    // hide the "Check" button after checking the answer
+    const checkButton = document.getElementById("checkbtn");
     checkButton.style.display = "none";
   };
 
   
-
-
-
-
-
+// pop up modal to display final score and message
   const showModal = (message, buttonText, buttonCallback) => {
+    // modal DOM elements
     const modal = document.getElementById("myModal");
     const modalMessage = document.getElementById("modalMessage");
     const modalButton = document.getElementById("modalButton");
     const passImage = document.getElementById("passImage")
     const failImage = document.getElementById("failImage")
   
+    // display message
     modalMessage.textContent = message;
+    // button to be displayed "Retake" or "Close"
     modalButton.textContent = buttonText;
   
+    // close modal x
     modalButton.onclick = () => {
       modal.style.display = "none";
       buttonCallback();
@@ -317,21 +302,29 @@ const checkAnswer = () => {
   };
   
   const nextQuestion = () => {
-    // Hide the result images
+     // show the "Check" button after clicking next
+     const checkButton = document.getElementById("checkbtn");
+     checkButton.style.display = "block";
+
+    // hide the result images
     yesImage.style.display = "none";
     noImage.style.display = "none";
   
-    // Display only the question-person image
+    // display question image
     questionImage.style.display = "block";
     
+    // next button DOM element - set to hidden by default
     const nextButton = document.getElementById("next-button2");
     nextButton.style.display = "none";
   
     currentQuestionIndex++;
   
+    // if next clicked and there are more questions display them
     if (currentQuestionIndex < questions.length) {
         displayQuestion();
       } else {
+        // if questions are finished and user got less than 5/10
+        // display score, hide pass image and prompt user to retake quiz
         if (correctAnswersCount < 5) {
             passImage.style.display = "none";
           showModal(`You got ${correctAnswersCount * 10}%, Please Retake Quiz`, "Retake", () => {
@@ -339,11 +332,12 @@ const checkAnswer = () => {
             // Reload the page to retake the quiz
             location.reload();
           });
+          // if user passed display hide fail image and display score
         } else {
             failImage.style.display = "none";
           showModal(`You passed and got ${correctAnswersCount * 10}%`, "Close", () => {
             
-            // Redirect to index.html
+            // on click of close redirect to index.html
             window.location.href = "index.html";
           });
         }

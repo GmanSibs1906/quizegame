@@ -202,7 +202,7 @@ label {
   }
 
   /* Media query for tablets (portrait orientation) */
-@media (max-width: 815px) {
+@media (max-width: 825px) {
     body {
         font-size: 16px;
     }
